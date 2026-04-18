@@ -16,12 +16,14 @@ class KnowledgeBase:
         }
         self._cache: dict[str, Any] = {}
 
+#Открывает JSON-файл и превращает его в Python-словарь/список
     def _read_json(self, path: Path) -> Any:
         if not path.exists():
             return {}
         with open(path, "r", encoding="utf-8") as file:
             return json.load(file)
 
+#Читает файл и сохраняет в кеш (потом берёт из кеша)
     def load(self, section: str) -> Any:
         if section in self._cache:
             return self._cache[section]
@@ -34,19 +36,24 @@ class KnowledgeBase:
         self._cache[section] = data
         return data
 
+#Выгружает всё
     def load_all(self) -> dict[str, Any]:
         return {section: self.load(section) for section in self.files}
 
+#Забывает всё из кеша
     def reload(self) -> None:
         self._cache.clear()
 
+#Ну эта функция выгружает словарь(ключ - значение) для одного преподавателя, т.е.
+#если написать kb.get_teacher_by_id("T001"), то выгрузит Шункевича
     def get_teacher_by_id(self, teacher_id: str) -> dict[str, Any] | None:
         teachers_data = self.load("teachers")
         for teacher in teachers_data.get("teachers", []):
             if teacher.get("id") == teacher_id:
                 return teacher
         return None
-
+    
+#Выводит словарь именно по имени
     def get_teacher_by_name(self, query: str) -> dict[str, Any] | None:
         query_l = query.lower().strip()
         teachers_data = self.load("teachers")
@@ -55,6 +62,7 @@ class KnowledgeBase:
                 return teacher
         return None
 
+#ищет дисциплину по названию в учебном плане и добавляет к ней номер курса и семестра
     def get_discipline_by_name(self, query: str) -> dict[str, Any] | None:
         query_l = query.lower().strip()
         curriculum = self.load("curriculum")
@@ -68,7 +76,8 @@ class KnowledgeBase:
                         result["semester_number"] = semester.get("semester_number")
                         return result
         return None
-
+    
+#находит все дисциплины конкретного преподавателя во всём учебном плане и добавляет к каждой номер курса и семестра
     def get_disciplines_by_teacher(self, teacher_id: str) -> list[dict[str, Any]]:
         curriculum = self.load("curriculum")
         result = []
@@ -84,6 +93,7 @@ class KnowledgeBase:
 
         return result
 
+#Поиск сразу по всем файлам
     def search_text(self, query: str, sections: list[str] | None = None) -> list[dict[str, Any]]:
         query = query.strip().lower()
         if not query:
@@ -117,6 +127,7 @@ class KnowledgeBase:
 
         return unique
 
+#ищет слово во всём содержимом объекта
     def _search_in_object(
         self,
         obj: Any,
@@ -158,23 +169,18 @@ class KnowledgeBase:
                     "item": obj,
                 })
 
+#Выгружает контакты из common.json
     def get_contacts(self) -> dict[str, Any]:
         common = self.load("common")
         return common.get("contacts", {})
 
+#Выгружает specialty из common.json
     def get_specialty_info(self) -> dict[str, Any]:
         common = self.load("common")
         return common.get("specialty", {})
 
+#Выгружает department из common.json
     def get_department_info(self) -> dict[str, Any]:
         common = self.load("common")
         return common.get("department", {})
-
-    def get_admission_summary(self) -> dict[str, Any]:
-        return self.load("admissions")
-
-    def get_graduates_summary(self) -> dict[str, Any]:
-        return self.load("graduates")
-
-    def get_science_summary(self) -> dict[str, Any]:
-        return self.load("science")
+    
