@@ -3,7 +3,8 @@ from utils.formatters import (
     format_admission_info,
     format_discipline_card,
     format_search_results,
-    format_teacher_card,
+    format_teacher_card_for_student,
+    format_teacher_card_for_teacher,
 )
 
 kb = KnowledgeBase()
@@ -22,10 +23,10 @@ def search_for_applicant(query: str) -> str:
         companies = prospects.get("partner_companies", [])[:8]
 
         return (
-            "🚀 <b>Карьера выпускников</b>\n\n"
-            "<b>Возможные позиции:</b>\n"
+            "🚀 Карьера выпускников\n\n"
+            "Возможные позиции:\n"
             + "\n".join(f"• {item}" for item in positions)
-            + "\n\n<b>Компании-партнёры:</b>\n"
+            + "\n\nКомпании-партнёры:\n"
             + "\n".join(f"• {item}" for item in companies)
         )
 
@@ -36,13 +37,12 @@ def search_for_applicant(query: str) -> str:
 def search_for_student(query: str) -> str:
     teacher = kb.get_teacher_by_name(query)
     if teacher:
-        disciplines = kb.get_disciplines_by_teacher(teacher.get("id", ""))
-        return format_teacher_card(teacher, disciplines)
+        return format_teacher_card_for_student(teacher)
 
     discipline = kb.get_discipline_by_name(query)
     if discipline:
-        teacher = kb.get_teacher_by_id(discipline.get("teacher_id", ""))
-        return format_discipline_card(discipline, teacher)
+        teacher_obj = kb.get_teacher_by_id(discipline.get("teacher_id", ""))
+        return format_discipline_card(discipline, teacher_obj)
 
     results = kb.search_text(query, sections=["curriculum", "teachers", "science", "common"])
     return format_search_results(query, results, "студента")
@@ -51,8 +51,12 @@ def search_for_student(query: str) -> str:
 def search_for_teacher(query: str) -> str:
     teacher = kb.get_teacher_by_name(query)
     if teacher:
-        disciplines = kb.get_disciplines_by_teacher(teacher.get("id", ""))
-        return format_teacher_card(teacher, disciplines)
+        return format_teacher_card_for_teacher(teacher)
+
+    discipline = kb.get_discipline_by_name(query)
+    if discipline:
+        teacher_obj = kb.get_teacher_by_id(discipline.get("teacher_id", ""))
+        return format_discipline_card(discipline, teacher_obj)
 
     results = kb.search_text(query, sections=["teachers", "science", "curriculum", "common"])
     return format_search_results(query, results, "преподавателя")
@@ -61,13 +65,12 @@ def search_for_teacher(query: str) -> str:
 def search_everywhere(query: str) -> str:
     teacher = kb.get_teacher_by_name(query)
     if teacher:
-        disciplines = kb.get_disciplines_by_teacher(teacher.get("id", ""))
-        return format_teacher_card(teacher, disciplines)
+        return format_teacher_card_for_student(teacher)
 
     discipline = kb.get_discipline_by_name(query)
     if discipline:
-        teacher = kb.get_teacher_by_id(discipline.get("teacher_id", ""))
-        return format_discipline_card(discipline, teacher)
+        teacher_obj = kb.get_teacher_by_id(discipline.get("teacher_id", ""))
+        return format_discipline_card(discipline, teacher_obj)
 
     results = kb.search_text(query)
     return format_search_results(query, results, "всех пользователей")
