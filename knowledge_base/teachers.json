@@ -18,27 +18,53 @@
         "Базы знаний",
         "Семантические технологии проектирования интеллектуальных систем"
       ],
-      "taught_disciplines": ["D005", "D012", "D021", "D022", "D042", "D051", "D052", "D055"],
+      "taught_disciplines": [
+        "Математические основы интеллектуальных систем",
+        "Представление и обработка информации в интеллектуальных системах",
+        "Применение теории графов в информатике",
+        "Семантические технологии проектирования баз знаний",
+        "Семантические технологии проектирования решателей задач"
+      ],
       "profile_url": "https://www.bsuir.by/ru/kaf-iit/shunkevich-d-v"
     },
     {
       "id": "T002",
-      "full_name": "Голенков Владимир Васильевич",
-      "position": "Профессор",
-      "academic_degree": "Доктор технических наук",
-      "academic_title": "Профессор",
-      "email": "golen@bsuir.by",
+      "full_name": "Ивашенко Валерьян Петрович",
+      "position": "Доцент",
+      "academic_degree": "Кандидат технических наук",
+      "academic_title": "Доцент",
+      "email": "ivashenko@bsuir.by",
       "research_interests": [
-        "Интеллектуальные системы",
-        "Семантическое моделирование",
-        "Представление знаний",
-        "Искусственный интеллект"
+        "Унифицированные семантические модели представления и обработки знаний",
+        "Распределённые многоагентные системы, управляемые знаниями",
+        "Семантические технологии интеграции интеллектуальных систем"
       ],
-      "taught_disciplines": [],
-      "profile_url": "https://www.bsuir.by/ru/kaf-iit/golenkov-v-v"
+      "taught_disciplines": [
+        "Логические основы интеллектуальных систем",
+        "Модели решения задач в интеллектуальных системах"
+      ],
+      "profile_url": "https://www.bsuir.by/ru/kaf-iit/ivashenko-v-p"
     },
     {
       "id": "T003",
+      "full_name": "Самодумкин Сергей Александрович",
+      "position": "Старший преподаватель",
+      "academic_degree": "",
+      "academic_title": "",
+      "email": "samodumkin@bsuir.by",
+      "research_interests": [
+        "Интеллектуальные геоинформационные системы"
+      ],
+      "taught_disciplines": [
+        "Графический интерфейс интеллектуальных систем",
+        "Интеллектуальные геоинформационные системы и технологии",
+        "Обработка изображений в интеллектуальных системах",
+        "Семантические технологии электронного бизнеса"
+      ],
+      "profile_url": "https://www.bsuir.by/ru/kaf-iit/samodumkin-s-a"
+    },
+    {
+      "id": "T004",
       "full_name": "Гулякина Наталья Анатольевна",
       "position": "Доцент",
       "academic_degree": "Кандидат физико-математических наук",
@@ -50,343 +76,25 @@
         "Параллельные языки программирования",
         "Прикладные интеллектуальные системы"
       ],
-      "taught_disciplines": ["D002", "D006", "D011", "D014"],
+      "taught_disciplines": [
+        "Теоретико-множественные основы интеллектуальных систем"
+      ],
       "profile_url": "https://www.bsuir.by/ru/kaf-iit/gulyakina-n-a"
     },
     {
-      "id": "T004",
-      "full_name": "Ивашенко Валерьян Петрович",
-      "position": "Доцент",
-      "academic_degree": "Кандидат технических наук",
-      "academic_title": "Доцент",
-      "email": "ivashenko@bsuir.by",
-      "research_interests": [
-        "Унифицированные семантические модели представления и обработки знаний",
-        "Распределённые многоагентные системы",
-        "Семантические технологии интеграции интеллектуальных систем"
-      ],
-      "taught_disciplines": ["D023", "D033", "D047", "D032", "D052"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-iit/ivashenko-v-p"
-    },
-    {
       "id": "T005",
-      "full_name": "Калачёв Виталий Николаевич",
-      "position": "Доцент",
-      "academic_degree": "Кандидат физико-математических наук",
-      "academic_title": "Доцент",
-      "email": "v.kalachev@bsuir.by",
-      "research_interests": [
-        "Информационная безопасность",
-        "Криптография",
-        "Защита информации в интеллектуальных системах"
-      ],
-      "taught_disciplines": ["D025", "D048", "D057"],
-      "profile_url": ""
-    },
-    {
-      "id": "T006",
-      "full_name": "Захаров Владимир Владимирович",
-      "position": "Доцент",
-      "academic_degree": "Кандидат технических наук",
-      "academic_title": "Доцент",
-      "email": "zakharov@bsuir.by",
-      "research_interests": [
-        "Аппаратное обеспечение",
-        "Стандартизация в IT",
-        "Метрология"
-      ],
-      "taught_disciplines": ["D028", "D034"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-iit/zakharov-v-v"
-    },
-    {
-      "id": "T007",
-      "full_name": "Самодумкин Сергей Александрович",
-      "position": "Старший преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "samodumkin@bsuir.by",
-      "research_interests": [
-        "Численные методы",
-        "Вычислительная математика",
-        "Алгоритмы оптимизации"
-      ],
-      "taught_disciplines": ["D027"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-iit/samodumkin-s-a"
-    },
-    {
-      "id": "T008",
-      "full_name": "Гракова Наталья Викторовна",
-      "position": "Старший преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "grakova@bsuir.by",
-      "research_interests": [
-        "Управление коллективным проектированием интеллектуальных систем",
-        "Управление проектами"
-      ],
-      "taught_disciplines": ["D004", "D046", "D054", "D021"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-iit/grakova-n-v"
-    },
-    {
-      "id": "T009",
-      "full_name": "Ковалёв Михаил Владимирович",
-      "position": "Старший преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "kovalev@bsuir.by",
-      "research_interests": [
-        "Операционные системы",
-        "Компьютерные сети",
-        "Сетевая безопасность"
-      ],
-      "taught_disciplines": ["D024", "D043"],
-      "profile_url": ""
-    },
-    {
-      "id": "T010",
-      "full_name": "Пакутник Дмитрий Викторович",
-      "position": "Ассистент",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "",
-      "research_interests": [
-        "Программирование",
-        "Алгоритмы и структуры данных",
-        "Python разработка"
-      ],
-      "taught_disciplines": ["D003", "D015"],
-      "profile_url": ""
-    },
-    {
-      "id": "T011",
       "full_name": "Зотов Никита Владимирович",
-      "position": "Ассистент",
+      "position": "",
       "academic_degree": "",
       "academic_title": "",
       "email": "n.zotov@bsuir.by",
       "research_interests": [
-        "Геоинформационные системы",
-        "Пространственные данные",
-        "Web-ГИС"
-      ],
-      "taught_disciplines": ["D035", "D044"],
-      "profile_url": ""
-    },
-    {
-      "id": "T012",
-      "full_name": "Сальников Даниил Андреевич",
-      "position": "Ассистент",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "d.salnikov@bsuir.by",
-      "research_interests": [
-        "Машинное обучение",
-        "Интеллектуальный анализ данных"
+        "Интеллектуальные информационные технологии",
+        "Семантические модели"
       ],
       "taught_disciplines": [],
-      "profile_url": ""
-    },
-    {
-      "id": "T013",
-      "full_name": "Крапивин Юрий Борисович",
-      "position": "Доцент",
-      "academic_degree": "Кандидат технических наук",
-      "academic_title": "Доцент",
-      "email": "krapivin@bsuir.by",
-      "research_interests": [
-        "Линейная алгебра",
-        "Аналитическая геометрия",
-        "Дискретная математика"
-      ],
-      "taught_disciplines": ["D001"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-iit/krapivin-yu-b"
-    },
-    {
-      "id": "T014",
-      "full_name": "Сердюков Роман Евгеньевич",
-      "position": "Доцент",
-      "academic_degree": "Кандидат технических наук",
-      "academic_title": "Доцент",
-      "email": "serdyukov@bsuir.by",
-      "research_interests": [
-        "Физика",
-        "Электродинамика",
-        "Квантовая физика"
-      ],
-      "taught_disciplines": ["D007", "D013"],
-      "profile_url": ""
-    },
-    {
-      "id": "T015",
-      "full_name": "Литвинчук Юлия Анатольевна",
-      "position": "Старший преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "iu.litvinchuk@bsuir.by",
-      "research_interests": [],
-      "taught_disciplines": [],
-      "profile_url": ""
-    },
-    {
-      "id": "T016",
-      "full_name": "Садовский Михаил Ефимович",
-      "position": "Старший преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "sadovski@bsuir.by",
-      "research_interests": [
-        "Интеллектуальные системы",
-        "Семантические технологии"
-      ],
-      "taught_disciplines": [],
-      "profile_url": "https://www.bsuir.by/ru/kaf-iit/sadovskiy-m-e"
-    },
-    {
-      "id": "T017",
-      "full_name": "Цирук Владимир Александрович",
-      "position": "Старший преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "v.tsiruk@bsuir.by",
-      "research_interests": [],
-      "taught_disciplines": [],
-      "profile_url": ""
-    },
-    {
-      "id": "T018",
-      "full_name": "Ерофеев Илья Александрович",
-      "position": "Ассистент",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "i.erofeev@bsuir.by",
-      "research_interests": [],
-      "taught_disciplines": [],
-      "profile_url": ""
-    },
-    {
-      "id": "T019",
-      "full_name": "Жмырко Александра Владимировна",
-      "position": "Ассистент",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "a.zhmyrko@bsuir.by",
-      "research_interests": [],
-      "taught_disciplines": [],
-      "profile_url": ""
-    },
-    {
-      "id": "T020",
-      "full_name": "Жук Александр Андреевич",
-      "position": "Ассистент",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "a.zhuk@bsuir.by",
-      "research_interests": [],
-      "taught_disciplines": [],
-      "profile_url": ""
-    },
-    {
-      "id": "T021",
-      "full_name": "Соколович Максим Геннадьевич",
-      "position": "Ассистент",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "m.sokolovich@bsuir.by",
-      "research_interests": [],
-      "taught_disciplines": [],
-      "profile_url": ""
-    },
-    {
-      "id": "T022",
-      "full_name": "Кафедра физического воспитания и спорта",
-      "position": "Преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "",
-      "research_interests": [],
-      "taught_disciplines": ["D008", "D019", "D030", "D041", "D050", "D059"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-fv"
-    },
-    {
-      "id": "T023",
-      "full_name": "Кафедра иностранных языков",
-      "position": "Преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "",
-      "research_interests": [],
-      "taught_disciplines": ["D009", "D016"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-in"
-    },
-    {
-      "id": "T024",
-      "full_name": "Кафедра белорусского языка",
-      "position": "Преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "",
-      "research_interests": [],
-      "taught_disciplines": ["D010"],
-      "profile_url": ""
-    },
-    {
-      "id": "T025",
-      "full_name": "Кафедра истории",
-      "position": "Преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "",
-      "research_interests": [],
-      "taught_disciplines": ["D017", "D040"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-history"
-    },
-    {
-      "id": "T026",
-      "full_name": "Ногина Наталья Эдуардовна",
-      "position": "Доцент",
-      "academic_degree": "",
-      "academic_title": "Доцент",
-      "email": "",
-      "research_interests": [
-        "Математическая логика",
-        "Логическое программирование",
-        "Нечеткая логика"
-      ],
-      "taught_disciplines": ["D018", "D032", "D045"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-iit/nogina-n-e"
-    },
-    {
-      "id": "T027",
-      "full_name": "Кафедра философии",
-      "position": "Преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "",
-      "research_interests": [],
-      "taught_disciplines": ["D038"],
-      "profile_url": "https://www.bsuir.by/ru/kaf-filosofii"
-    },
-    {
-      "id": "T028",
-      "full_name": "Кафедра экономики",
-      "position": "Преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "",
-      "research_interests": [],
-      "taught_disciplines": ["D036", "D037", "D039", "D053"],
-      "profile_url": ""
-    },
-    {
-      "id": "T029",
-      "full_name": "Кафедра безопасности жизнедеятельности",
-      "position": "Преподаватель",
-      "academic_degree": "",
-      "academic_title": "",
-      "email": "",
-      "research_interests": [],
-      "taught_disciplines": ["D029"],
-      "profile_url": ""
+      "profile_url": "",
+      "note": "ассистент"
     }
   ]
 }
