@@ -6,7 +6,6 @@ from keyboards.applicant_kb import get_applicant_menu_inline
 from services.navigation import get_role_intro
 from services.search import search_for_applicant
 
-
 router = Router(name=__name__)
 
 

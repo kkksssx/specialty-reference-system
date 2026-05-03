@@ -55,6 +55,20 @@ class KnowledgeBase:
                 return teacher
         return None
 
+    def get_discipline_by_name(self, query: str) -> dict[str, Any] | None:
+        query_l = query.lower().strip()
+        curriculum = self.load("curriculum")
+
+        for course in curriculum.get("courses", []):
+            for semester in course.get("semesters", []):
+                for discipline in semester.get("disciplines", []):
+                    if query_l in discipline.get("name", "").lower():
+                        row = discipline.copy()
+                        row["course_number"] = course.get("course_number")
+                        row["semester_number"] = semester.get("semester_number")
+                        return row
+        return None
+
     def get_all_teachers(self) -> list[dict[str, Any]]:
         teachers_data = self.load("teachers")
         return teachers_data.get("teachers", [])
@@ -115,6 +129,80 @@ class KnowledgeBase:
 
     def get_discipline_names_by_ids(self, discipline_ids: list[str]) -> list[str]:
         return [self.get_discipline_name_by_id(discipline_id) for discipline_id in discipline_ids]
+
+    def search_text(self, query: str, sections: list[str] | None = None) -> list[dict[str, Any]]:
+        query = query.strip().lower()
+        if not query:
+            return []
+
+        target_sections = sections or list(self.files.keys())
+        results: list[dict[str, Any]] = []
+
+        for section in target_sections:
+            data = self.load(section)
+            self._search_in_object(
+                obj=data,
+                query=query,
+                results=results,
+                section=section,
+                path=section,
+            )
+
+        unique: list[dict[str, Any]] = []
+        seen: set[tuple[str, str, str]] = set()
+
+        for item in results:
+            key = (
+                item.get("section", ""),
+                item.get("path", ""),
+                str(item.get("item", ""))[:200],
+            )
+            if key not in seen:
+                seen.add(key)
+                unique.append(item)
+
+        return unique
+
+    def _search_in_object(
+        self,
+        obj: Any,
+        query: str,
+        results: list[dict[str, Any]],
+        section: str,
+        path: str,
+    ) -> None:
+        if isinstance(obj, dict):
+            text_parts = []
+            for value in obj.values():
+                if isinstance(value, (str, int, float, bool)):
+                    text_parts.append(str(value))
+                elif isinstance(value, list):
+                    for item in value:
+                        if isinstance(item, (str, int, float, bool)):
+                            text_parts.append(str(item))
+
+            combined = " ".join(text_parts)
+            if combined and query in combined.lower():
+                results.append({
+                    "section": section,
+                    "path": path,
+                    "item": obj,
+                })
+
+            for key, value in obj.items():
+                self._search_in_object(value, query, results, section, f"{path}.{key}")
+
+        elif isinstance(obj, list):
+            for index, item in enumerate(obj):
+                self._search_in_object(item, query, results, section, f"{path}[{index}]")
+
+        elif isinstance(obj, (str, int, float, bool)):
+            if query in str(obj).lower():
+                results.append({
+                    "section": section,
+                    "path": path,
+                    "item": obj,
+                })
 
     def get_contacts(self) -> dict[str, Any]:
         common = self.load("common")

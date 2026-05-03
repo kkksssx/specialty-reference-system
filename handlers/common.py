@@ -20,6 +20,7 @@ from utils.formatters import (
     format_teacher_card_for_teacher,
     format_teacher_short_button_text,
 )
+from utils.safe_send import safe_message_answer, safe_callback_answer
 
 router = Router(name=__name__)
 kb = KnowledgeBase()
@@ -28,18 +29,27 @@ kb = KnowledgeBase()
 @router.message(Command("about"))
 @router.message(F.text == "ℹ️ О кафедре")
 async def cmd_about(message: Message) -> None:
-    await message.answer(ABOUT_TEXT, reply_markup=get_main_menu_keyboard())
+    await safe_message_answer(
+        message,
+        ABOUT_TEXT,
+        reply_markup=get_main_menu_keyboard(),
+    )
 
 
 @router.message(Command("contacts"))
 @router.message(F.text == "📞 Контакты")
 async def cmd_contacts(message: Message) -> None:
-    await message.answer(get_contacts_text(), reply_markup=get_main_menu_keyboard())
+    await safe_message_answer(
+        message,
+        get_contacts_text(),
+        reply_markup=get_main_menu_keyboard(),
+    )
 
 
 @router.message(F.text == "🎓 Абитуриент")
 async def applicant_entry(message: Message) -> None:
-    await message.answer(
+    await safe_message_answer(
+        message,
         get_role_intro("applicant"),
         reply_markup=get_applicant_menu_inline(),
     )
@@ -47,7 +57,8 @@ async def applicant_entry(message: Message) -> None:
 
 @router.message(F.text == "📚 Студент")
 async def student_entry(message: Message) -> None:
-    await message.answer(
+    await safe_message_answer(
+        message,
         get_role_intro("student"),
         reply_markup=get_student_menu_inline(),
     )
@@ -55,15 +66,20 @@ async def student_entry(message: Message) -> None:
 
 @router.message(F.text == "👨‍🏫 Преподаватель")
 async def teacher_entry(message: Message) -> None:
-    await message.answer(
+    await safe_message_answer(
+        message,
         get_role_intro("teacher"),
         reply_markup=get_teacher_menu_inline(),
     )
 
 
+@router.message(F.text == "Общая информация")
 @router.message(F.text == "📂 Общая информация")
 async def common_entry(message: Message) -> None:
-    await message.answer(get_common_menu_text())
+    await safe_message_answer(
+        message,
+        get_common_menu_text(),
+    )
 
 
 @router.callback_query(F.data == "nav:student:curriculum_subjects")
@@ -84,12 +100,11 @@ async def show_courses_for_disciplines(callback: CallbackQuery) -> None:
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
 
-    if callback.message:
-        await callback.message.answer(
-            "📚 Выберите курс:",
-            reply_markup=keyboard,
-        )
-
+    await safe_callback_answer(
+        callback,
+        "📚 Выберите курс:",
+        reply_markup=keyboard,
+    )
     await callback.answer()
 
 
@@ -116,12 +131,11 @@ async def show_semesters_for_course(callback: CallbackQuery) -> None:
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
 
-    if callback.message:
-        await callback.message.answer(
-            f"📘 {course_number} курс: выберите семестр",
-            reply_markup=keyboard,
-        )
-
+    await safe_callback_answer(
+        callback,
+        f"📘 {course_number} курс: выберите семестр",
+        reply_markup=keyboard,
+    )
     await callback.answer()
 
 
@@ -135,7 +149,10 @@ async def show_disciplines_for_semester(callback: CallbackQuery) -> None:
     course_number = int(course_number_str)
     semester_number = int(semester_number_str)
 
-    disciplines = kb.get_disciplines_by_course_and_semester(course_number, semester_number)
+    disciplines = kb.get_disciplines_by_course_and_semester(
+        course_number,
+        semester_number,
+    )
 
     buttons = []
     for disc in disciplines:
@@ -157,12 +174,11 @@ async def show_disciplines_for_semester(callback: CallbackQuery) -> None:
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
 
-    if callback.message:
-        await callback.message.answer(
-            f"📖 {course_number} курс, {semester_number} семестр: выберите дисциплину",
-            reply_markup=keyboard,
-        )
-
+    await safe_callback_answer(
+        callback,
+        f"📖 {course_number} курс, {semester_number} семестр: выберите дисциплину",
+        reply_markup=keyboard,
+    )
     await callback.answer()
 
 
@@ -186,9 +202,7 @@ async def show_discipline_card(callback: CallbackQuery) -> None:
 
     text = format_discipline_card(discipline, teacher)
 
-    if callback.message:
-        await callback.message.answer(text)
-
+    await safe_callback_answer(callback, text)
     await callback.answer()
 
 
@@ -209,12 +223,11 @@ async def show_teachers_for_students(callback: CallbackQuery) -> None:
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
 
-    if callback.message:
-        await callback.message.answer(
-            "👨‍🏫 Выберите преподавателя:",
-            reply_markup=keyboard,
-        )
-
+    await safe_callback_answer(
+        callback,
+        "👨‍🏫 Выберите преподавателя:",
+        reply_markup=keyboard,
+    )
     await callback.answer()
 
 
@@ -235,12 +248,11 @@ async def show_teachers_for_teachers(callback: CallbackQuery) -> None:
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
 
-    if callback.message:
-        await callback.message.answer(
-            "👨‍🏫 Выберите преподавателя из состава кафедры:",
-            reply_markup=keyboard,
-        )
-
+    await safe_callback_answer(
+        callback,
+        "👨‍🏫 Выберите преподавателя из состава кафедры:",
+        reply_markup=keyboard,
+    )
     await callback.answer()
 
 
@@ -257,9 +269,10 @@ async def show_teacher_card_for_student_callback(callback: CallbackQuery) -> Non
         await callback.answer("Преподаватель не найден")
         return
 
-    if callback.message:
-        await callback.message.answer(format_teacher_card_for_student(teacher))
-
+    await safe_callback_answer(
+        callback,
+        format_teacher_card_for_student(teacher),
+    )
     await callback.answer()
 
 
@@ -276,9 +289,10 @@ async def show_teacher_card_for_teacher_callback(callback: CallbackQuery) -> Non
         await callback.answer("Преподаватель не найден")
         return
 
-    if callback.message:
-        await callback.message.answer(format_teacher_card_for_teacher(teacher))
-
+    await safe_callback_answer(
+        callback,
+        format_teacher_card_for_teacher(teacher),
+    )
     await callback.answer()
 
 
@@ -291,12 +305,16 @@ async def process_navigation(callback: CallbackQuery) -> None:
     _, role, section = callback.data.split(":", maxsplit=2)
     text = get_section_text(role=role, section=section)
 
-    if callback.message and text:
-        await callback.message.answer(text)
+    if text:
+        await safe_callback_answer(callback, text)
 
     await callback.answer()
 
 
 @router.message()
 async def fallback_message(message: Message) -> None:
-    await message.answer(UNKNOWN_TEXT, reply_markup=get_main_menu_keyboard())
+    await safe_message_answer(
+        message,
+        UNKNOWN_TEXT,
+        reply_markup=get_main_menu_keyboard(),
+    )

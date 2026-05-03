@@ -7,7 +7,6 @@ from services.navigation import get_role_intro
 from services.search import search_for_student
 from services.recommendations import get_student_recommendations
 
-
 router = Router(name=__name__)
 
 
